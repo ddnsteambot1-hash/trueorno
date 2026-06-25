@@ -4,6 +4,7 @@
   "private": true,
   "description": "Truth or dare 18+ mini app for VK Mini Apps.",
   "scripts": {
+    "build": "node -e \"console.log('Static app: no build step required')\"",
     "start": "node server.js"
   },
   "engines": {
