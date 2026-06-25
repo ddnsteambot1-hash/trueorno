@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#12000f" />
+    <title>Правда или действие 18+</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="screen age-screen is-active" id="ageScreen">
+        <div class="brand-mark">18+</div>
+        <p class="eyebrow">VK Mini App party game</p>
+        <h1>Правда или действие</h1>
+        <p class="lead">
+          Провокационная игра для взрослых компаний. Все задания рассчитаны только на
+          совершеннолетних участников и выполняются по взаимному согласию.
+        </p>
+        <button class="primary-button" id="confirmAgeButton">Мне есть 18, начать</button>
+      </section>
+
+      <section class="screen setup-screen" id="setupScreen">
+        <div class="topline">
+          <span class="pill">2-4 игрока</span>
+          <button class="ghost-button" id="resetButton" type="button">Сброс</button>
+        </div>
+        <h2>Кто сегодня играет?</h2>
+        <p class="hint">Выберите количество игроков и впишите имена в карточки.</p>
+
+        <div class="player-count" aria-label="Количество игроков">
+          <button class="count-button is-active" type="button" data-count="2">2</button>
+          <button class="count-button" type="button" data-count="3">3</button>
+          <button class="count-button" type="button" data-count="4">4</button>
+        </div>
+
+        <form class="players-form" id="playersForm">
+          <div class="players-list" id="playersList"></div>
+          <button class="primary-button" type="submit">Сохранить игроков</button>
+        </form>
+      </section>
+
+      <section class="screen game-screen" id="gameScreen">
+        <div class="game-top">
+          <button class="ghost-button" id="editPlayersButton" type="button">Игроки</button>
+          <div class="round-info">
+            <span>Ход</span>
+            <strong id="turnNumber">1</strong>
+          </div>
+        </div>
+
+        <article class="turn-card">
+          <div class="current-player">
+            <div class="avatar" id="currentAvatar">А</div>
+            <div>
+              <p class="label">Сейчас выбирает</p>
+              <h2 id="currentPlayerName">Игрок</h2>
+            </div>
+          </div>
+
+          <div class="choice-panel" id="choicePanel">
+            <p class="hint" id="choiceHint">Выбери: правда или действие.</p>
+            <div class="choice-grid">
+              <button class="choice-button truth" id="truthButton" type="button">
+                <span>Правда</span>
+                <small>личный вопрос</small>
+              </button>
+              <button class="choice-button dare" id="dareButton" type="button">
+                <span>Действие</span>
+                <small>смелый вызов</small>
+              </button>
+            </div>
+          </div>
+
+          <div class="task-panel is-hidden" id="taskPanel">
+            <p class="task-type" id="taskType">Правда</p>
+            <h3 id="taskText">Вопрос появится здесь</h3>
+            <button class="primary-button" id="doneButton" type="button">Выполнено</button>
+          </div>
+        </article>
+
+        <div class="streak-bar" aria-live="polite">
+          <span>Правд подряд:</span>
+          <div class="dots" id="truthDots">
+            <i></i>
+            <i></i>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
