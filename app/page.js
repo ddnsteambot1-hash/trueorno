@@ -1,8 +1,10 @@
 import Script from "next/script";
+import VkBridgeInit from "./VkBridgeInit";
 
 export default function Page() {
   return (
     <>
+      <VkBridgeInit />
       <main className="app-shell">
         <section className="screen age-screen is-active" id="ageScreen">
           <div className="brand-mark">18+</div>
@@ -83,7 +85,6 @@ export default function Page() {
           </div>
         </section>
       </main>
-      <Script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js" strategy="beforeInteractive" />
       <Script src="/app.js" strategy="afterInteractive" />
     </>
   );
