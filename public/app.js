@@ -104,15 +104,36 @@ function showScreen(screenName) {
 }
 
 function initVkBridge() {
-  if (!window.vkBridge || typeof window.vkBridge.send !== "function") {
+  if (window.__vkBridgeInitialized) {
     return;
   }
 
-  window.vkBridge
-    .send("VKWebAppInit")
-    .catch(() => {
-      // The game should still work in a normal browser or during local checks.
-    });
+  let attempts = 0;
+  const maxAttempts = 20;
+
+  const tryInit = () => {
+    if (window.__vkBridgeInitialized || attempts >= maxAttempts) {
+      return;
+    }
+
+    attempts += 1;
+
+    if (!window.vkBridge || typeof window.vkBridge.send !== "function") {
+      setTimeout(tryInit, 150);
+      return;
+    }
+
+    window.vkBridge
+      .send("VKWebAppInit")
+      .then(() => {
+        window.__vkBridgeInitialized = true;
+      })
+      .catch(() => {
+        setTimeout(tryInit, 250);
+      });
+  };
+
+  tryInit();
 }
 
 function renderPlayersForm() {
